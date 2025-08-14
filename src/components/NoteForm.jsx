@@ -1,10 +1,6 @@
 import React, { useState } from "react";
 
-const NoteForm = () => {
-  // const [title, setTitle] = useState("");
-  // const [priority, setPriority] = useState("Medium");
-  // const [category, setCategory] = useState("Work");
-  // const [description, setDescription] = useState("");
+const NoteForm = ({ notes, setNotes }) => {
   const [formData, setFormData] = useState({
     title: "",
     category: "Work",
@@ -19,8 +15,26 @@ const NoteForm = () => {
     });
   };
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (!formData.title || !formData.description) return;
+
+    const newNote = {
+      id: Date.now(),
+      ...formData,
+    };
+
+    setNotes([newNote, ...notes]);
+    setFormData({
+      title: "",
+      category: "Work",
+      priority: "Medium",
+      description: "",
+    });
+  };
+
   return (
-    <form className="mb-6">
+    <form className="mb-6" onSubmit={handleSubmit}>
       <div className="mb-4">
         <label htmlFor="title" className="block font-semibold">
           Title
@@ -78,6 +92,7 @@ const NoteForm = () => {
           onChange={handleChange}
         />
       </div>
+      <button>Add Note</button>
     </form>
   );
 };
