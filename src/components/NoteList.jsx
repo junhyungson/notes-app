@@ -1,6 +1,6 @@
 import React from "react";
 
-const NoteList = ({ notes }) => {
+const NoteList = ({ notes, deleteNote }) => {
   if (notes.length === 0) {
     return <p className="text-center text-gray-500">No Notes Yet</p>;
   }
@@ -18,6 +18,12 @@ const NoteList = ({ notes }) => {
           <p className="text-sm text-gray-600">
             <strong>Description:</strong> {note.description}
           </p>
+          <button
+            onClick={() => deleteNote(note.id)}
+            className="mt-3 text-red-500 cursor-pointer transition hover:text-red-700"
+          >
+            🗑️Delete
+          </button>
         </div>
       ))}
     </div>
