@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import SelectInput from "./inputs/SelectInput";
+import TextAreaInput from "./inputs/TextAreaInput";
 import TextInput from "./inputs/TextInput";
 
 const NoteForm = ({ notes, setNotes }) => {
@@ -65,6 +66,7 @@ const NoteForm = ({ notes, setNotes }) => {
               },
               { value: "Low", label: "Low" },
             ]}
+            onChange={handleChange}
           />
           <SelectInput
             label="Category"
@@ -75,20 +77,16 @@ const NoteForm = ({ notes, setNotes }) => {
               { value: "Personal", label: "Personal" },
               { value: "Ideas", label: "Ideas" },
             ]}
+            onChange={handleChange}
           />
 
-          <div className="mb-4">
-            <label htmlFor="description" className="block font-semibold">
-              Description
-            </label>
-            <textarea
-              name="description"
-              type="text"
-              className="w-full border rounded-lg"
-              value={formData.description}
-              onChange={handleChange}
-            />
-          </div>
+          <TextAreaInput
+            label="Desc"
+            name="description"
+            value={formData.description}
+            onChange={handleChange}
+            required
+          />
           <button>Add Note</button>
         </form>
       )}
