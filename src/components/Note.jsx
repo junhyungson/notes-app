@@ -1,7 +1,6 @@
 import React from "react";
 
 const Note = ({ note, deleteNote }) => {
-  console.log(note);
   const getBorderColor = (priority) => {
     const colors = {
       High: "border-red-500",
